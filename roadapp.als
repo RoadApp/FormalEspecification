@@ -11,13 +11,10 @@ sig Carro {
 sig Servico {} 
 
 fact restrictions {
-	all car: Carro, cli: Cliente | car in (cli.carros)
+	all ser: Servico | one ser.~servicos 
+	all car: Carro | one car.~carros 
 	#Carro > 1
 	#Servico > 1
-	all ser: Servico | one ser.~servicos 
-
-	//Um serviço nao pode pertencer a mais de um carro
-	//all ser: Servico, c1,c2: Carro | (ser in c1.servicos) and (ser in c2.servicos) => c1 = c2
 }
 
 pred show[]{}
